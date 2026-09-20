@@ -375,36 +375,6 @@
     </div>
   </sc-if>
 
-  <sc-if value="{{ isSlides }}" hint-placeholder-val="{{ false }}">
-    <div style="position: relative; z-index: 1; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 4vw, 24px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;">
-      <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: clamp(12px, 3vw, 18px); text-align: center; padding: clamp(16px, 4.5vw, 28px) clamp(16px, 5vw, 30px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.46 0.08 168);">Nós dois</div>
-          <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(24px, 6.2vw, 34px); line-height: 1.1; text-wrap: pretty;">O ano que a gente viveu.</div>
-        </div>
-
-        <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; max-height: min(42vh, 420px); border-radius: 20px; overflow: hidden; background: oklch(0.93 0.035 165); box-shadow: inset 0 0 0 5px oklch(0.99 0.012 120);">
-          <sc-for list="{{ photos }}" as="photo" hint-placeholder-count="6">
-            <div style="position: absolute; inset: 0; transition: opacity 1s ease, transform 1s ease; opacity: {{ photo.opacity }}; transform: {{ photo.enter }}; z-index: {{ photo.z }};">
-              <img src="{{ photo.src }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(22px) saturate(1.15) brightness(0.92); transform: scale(1.18);" />
-              <img src="{{ photo.src }}" alt="nós dois" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; animation: {{ photo.anim }};" />
-            </div>
-          </sc-for>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
-          <button onClick="{{ prevPhoto }}" aria-label="foto anterior" style="cursor: pointer; border: 1px solid oklch(0.88 0.03 165); background: oklch(0.99 0.012 120); color: oklch(0.45 0.08 170); width: 44px; height: 44px; border-radius: 999px; font-size: 18px; line-height: 1; touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="background: oklch(0.96 0.03 150);">‹</button>
-          <div style="min-width: 72px; font-size: 13px; letter-spacing: 0.1em; color: oklch(0.46 0.06 170);">{{ photoCounter }}</div>
-          <button onClick="{{ nextPhoto }}" aria-label="próxima foto" style="cursor: pointer; border: 1px solid oklch(0.88 0.03 165); background: oklch(0.99 0.012 120); color: oklch(0.45 0.08 170); width: 44px; height: 44px; border-radius: 999px; font-size: 18px; line-height: 1; touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="background: oklch(0.96 0.03 150);">›</button>
-        </div>
-
-        <button onClick="{{ toGifts }}" style="cursor: pointer; border: none; font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 20px); padding: 14px clamp(24px, 7vw, 36px); min-height: 50px; border-radius: 999px; background: oklch(0.55 0.11 168); color: oklch(0.99 0.012 120); box-shadow: 0 12px 26px -12px oklch(0.4 0.09 172 / 0.9); touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; transition: transform 0.18s ease, box-shadow 0.18s ease;" style-hover="transform: translateY(-2px); box-shadow: 0 18px 32px -14px oklch(0.4 0.09 172 / 0.95);">Ver seu presente</button>
-      </div>
-
-      <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 21px); color: oklch(0.42 0.05 180);">— seu Pierre</div>
-    </div>
-  </sc-if>
-
   <sc-if value="{{ isChoosing }}" hint-placeholder-val="{{ false }}">
     <div style="position: relative; z-index: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 5vw, 36px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;">
       <div style="text-align: center; display: flex; flex-direction: column; gap: 16px; max-width: 620px; padding: clamp(22px, 6vw, 32px) clamp(18px, 5.5vw, 34px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
@@ -656,7 +626,7 @@ class Component extends DCLogic {
       cake: ["28 velinhas", "Antes dos presentes, o bolo.", "Uma velinha pra cada ano seu. Faz o pedido e assopra com vontade.", "Assopre minhas velinhas"],
       blowing: ["28 velinhas", "Fuuuuuu...", "Assopra, assopra, assopra!", "Assoprando..."],
       blown: ["Apagou todas", "Você conseguiu!", "Fez o pedido? Então já está valendo. Agora vem a melhor parte do bolo.", "Cortar o bolo"],
-      cut: ["A primeira fatia", "Uma fatia pra você.", "A maior, com mais cobertura, como você merece.", "Ver nossas fotos"]
+      cut: ["A primeira fatia", "Uma fatia pra você.", "A maior, com mais cobertura, como você merece.", "Ver seu presente"]
     }[step] || ["", "", "", ""];
     return {
       isSealed: step === "sealed",
@@ -723,7 +693,7 @@ class Component extends DCLogic {
           return;
         }
         if (step === "blown") return this.setState({ step: "cut" });
-        this.setState({ step: "slides", slide: 0 }, () => this.startSlides());
+        this.setState({ step: "choose" });
       },
       toGifts: () => { clearInterval(this._slideTimer); this.setState({ step: "choose" }); },
       canUndo: this.props.allowUndo ?? true,
