@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: oklch(0.95 0.045 148); }
+  a { color: oklch(0.45 0.09 165); }
+  a:hover { color: oklch(0.35 0.08 168); }
+  @keyframes rise { from { opacity: 0; transform: translateY(20px) scale(0.985); } to { opacity: 1; transform: none; } }
+  @keyframes pop { 0% { opacity: 0; transform: scale(0.82); } 60% { transform: scale(1.04); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes swell { 0%, 100% { transform: translateX(-25%) translateY(0) scaleY(1); } 50% { transform: translateX(-15%) translateY(-14px) scaleY(1.06); } }
+  @keyframes swell2 { 0%, 100% { transform: translateX(-12%) translateY(0) scaleY(1); } 50% { transform: translateX(-22%) translateY(-9px) scaleY(1.04); } }
+  @keyframes washOut { 0% { transform: translateY(0); opacity: 1; } 45% { transform: translateY(6%); } 100% { transform: translateY(112%); opacity: 0.9; } }
+  @keyframes drift { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-9px) rotate(2deg); } }
+  @keyframes sway { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
+  @keyframes sway2 { 0%, 100% { transform: rotate(2deg); } 50% { transform: rotate(-3deg); } }
+  @keyframes surf { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes roll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes rollBack { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @keyframes twinkle { 0%, 100% { opacity: 0.12; transform: scale(0.6); } 50% { opacity: 0.85; transform: scale(1); } }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(20px) rotate(-8deg); } 15% { opacity: 0.85; } 80% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-190px) rotate(10deg); } }
+  @keyframes beat { 0%, 100% { transform: scale(1); } 22% { transform: scale(1.18); } 42% { transform: scale(0.98); } 62% { transform: scale(1.1); } }
+  @keyframes armIdle { 0%, 100% { transform: rotate(9deg); } 50% { transform: rotate(13deg); } }
+  @keyframes armIdle2 { 0%, 100% { transform: rotate(-9deg); } 50% { transform: rotate(-13deg); } }
+  @keyframes armBack { 0% { transform: rotate(9deg); } 35% { transform: rotate(-24deg); } 70% { transform: rotate(-30deg); } 100% { transform: rotate(9deg); } }
+  @keyframes armBack2 { 0% { transform: rotate(-9deg); } 35% { transform: rotate(26deg); } 70% { transform: rotate(32deg); } 100% { transform: rotate(-9deg); } }
+  @keyframes hairIdle { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(2deg); } }
+  @keyframes hairIdle2 { 0%, 100% { transform: rotate(1.5deg); } 50% { transform: rotate(-2deg); } }
+  @keyframes hairBlow { 0% { transform: rotate(-1.5deg); } 40% { transform: rotate(-9deg) skewX(5deg); } 100% { transform: rotate(-1.5deg); } }
+  @keyframes hairBlow2 { 0% { transform: rotate(1.5deg); } 40% { transform: rotate(-7deg) skewX(4deg); } 100% { transform: rotate(1.5deg); } }
+  @keyframes photoIn { from { transform: scale(0.94) rotate(-0.8deg); opacity: 0.2; } to { transform: scale(1) rotate(0deg); opacity: 1; } }
+  @keyframes gust { 0% { opacity: 0; transform: translate(-8px, 0) rotate(12deg) scaleX(0.5); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(210px, 96px) rotate(12deg) scaleX(2); } }
+  @keyframes leanIn { 0% { transform: rotate(0deg) translateX(0); } 28% { transform: rotate(-7deg) translateX(-6px); } 62% { transform: rotate(9deg) translateX(10px); } 100% { transform: rotate(0deg) translateX(0); } }
+  @keyframes puff { 0% { opacity: 0; transform: translate(0, 0) scale(0.5); } 18% { opacity: 0.85; } 100% { opacity: 0; transform: translate(52px, 26px) scale(1.5); } }
+  @keyframes lean { 0%, 100% { transform: rotate(-1.5deg) translateY(0); } 50% { transform: rotate(1.5deg) translateY(-3px); } }
+  @keyframes flicker { 0%, 100% { transform: scale(1, 1) translateY(0); opacity: 1; } 45% { transform: scale(1.22, 0.86) translateY(-1px); opacity: 0.92; } 70% { transform: scale(0.92, 1.12) translateY(1px); opacity: 1; } }
+  @keyframes smokeUp { 0% { opacity: 0.55; transform: translateY(0) scale(0.7); } 100% { opacity: 0; transform: translateY(-30px) scale(1.5); } }
+  @keyframes glowPulse { 0%, 100% { opacity: 0.35; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.15); } }
+  @keyframes fall { 0% { opacity: 0; transform: translateY(-40px) rotate(0deg); } 12% { opacity: 1; } 100% { opacity: 0; transform: translateY(340px) rotate(400deg); } }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#8FD6B4"/><circle cx="50" cy="44" r="18" fill="#FFFFFF"/><rect x="30" y="66" width="40" height="10" rx="5" fill="#2E8E86"/></svg></template>
+<div style="position: relative; min-height: 100vh; min-height: 100dvh; overflow-x: clip; box-sizing: border-box; padding: clamp(118px, 22vw, 150px) clamp(14px, 4vw, 20px) clamp(200px, 40vw, 260px); -webkit-text-size-adjust: 100%; display: flex; align-items: flex-start; justify-content: center; font-family: 'Nunito', system-ui, sans-serif; color: oklch(0.3 0.05 190); background: linear-gradient(180deg, oklch(0.965 0.035 140) 0%, oklch(0.93 0.062 152) 68%, oklch(0.91 0.07 158) 100%);">
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: clamp(218px, 43vw, 276px); pointer-events: none; overflow-x: clip; overflow-y: visible; z-index: 0;">
+    <div style="position: absolute; left: 8%; bottom: clamp(164px, 34vw, 200px); animation: floatUp 6.1s ease-in-out 0s infinite;"><svg viewBox="0 0 24 24" width="22" height="22" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.72 0.14 18)"></path></svg></div>
+    <div style="position: absolute; left: 12%; bottom: clamp(140px, 29vw, 168px); animation: floatUp 7.4s ease-in-out 1.6s infinite;"><svg viewBox="0 0 24 24" width="16" height="16" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.8 0.12 12)"></path></svg></div>
+    <div style="position: absolute; left: 17%; bottom: clamp(176px, 36vw, 214px); animation: floatUp 6.6s ease-in-out 3.1s infinite;"><svg viewBox="0 0 24 24" width="19" height="19" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.13 20)"></path></svg></div>
+    <div style="position: absolute; left: 3%; bottom: clamp(126px, 26vw, 150px); animation: floatUp 7.8s ease-in-out 0.9s infinite;"><svg viewBox="0 0 24 24" width="13" height="13" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.82 0.11 14)"></path></svg></div>
+    <div style="position: absolute; right: 17%; bottom: clamp(170px, 35vw, 208px); animation: floatUp 6.9s ease-in-out 2.4s infinite;"><svg viewBox="0 0 24 24" width="20" height="20" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.73 0.14 18)"></path></svg></div>
+    <div style="position: absolute; right: 11%; bottom: clamp(146px, 30vw, 176px); animation: floatUp 7.2s ease-in-out 4.2s infinite;"><svg viewBox="0 0 24 24" width="14" height="14" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.79 0.12 10)"></path></svg></div>
+    <div style="position: absolute; right: 4%; bottom: clamp(168px, 35vw, 206px); animation: floatUp 6.4s ease-in-out 1.2s infinite;"><svg viewBox="0 0 24 24" width="18" height="18" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.13 20)"></path></svg></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 84px; height: 128px; background: linear-gradient(180deg, oklch(0.78 0.085 192) 0%, oklch(0.64 0.1 200) 100%);"></div>
+    <div style="position: absolute; left: -20%; bottom: 66px; width: 145%; height: 70px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; background: oklch(0.87 0.075 178); animation: swell 8s ease-in-out infinite;"></div>
+    <div style="position: absolute; left: -8%; bottom: 58px; width: 140%; height: 56px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; background: oklch(0.96 0.025 180); animation: swell2 6.5s ease-in-out infinite;"></div>
+    <div style="position: absolute; left: -12%; right: -12%; bottom: -8px; height: 96px; border-radius: 50% 50% 0 0 / 34px 34px 0 0; background: linear-gradient(180deg, oklch(0.945 0.045 96) 0%, oklch(0.9 0.055 92) 100%);"></div>
+
+    <div style="position: absolute; left: 6%; bottom: 64px; width: 0; height: 0; animation: sway 7s ease-in-out infinite; transform-origin: bottom center;">
+      <div style="position: absolute; bottom: 0; left: -7px; width: 14px; height: clamp(98px, 26vw, 132px); border-radius: 9px; background: linear-gradient(90deg, oklch(0.6 0.06 62) 0%, oklch(0.47 0.055 58) 100%); transform: rotate(-6deg); transform-origin: bottom center;"></div>
+      <div style="position: absolute; bottom: clamp(92px, 24.5vw, 124px); left: -8px; width: 0; height: 0;">
+        <div style="position: absolute; width: 86px; height: 32px; border-radius: 0 100% 0 100%; background: oklch(0.6 0.13 152); transform-origin: 0% 50%; transform: rotate(-158deg);"></div>
+        <div style="position: absolute; width: 78px; height: 30px; border-radius: 0 100% 0 100%; background: oklch(0.52 0.12 158); transform-origin: 0% 50%; transform: rotate(-118deg);"></div>
+        <div style="position: absolute; width: 92px; height: 30px; border-radius: 0 100% 0 100%; background: oklch(0.64 0.13 148); transform-origin: 0% 50%; transform: rotate(-58deg);"></div>
+        <div style="position: absolute; width: 80px; height: 30px; border-radius: 0 100% 0 100%; background: oklch(0.56 0.13 155); transform-origin: 0% 50%; transform: rotate(-16deg);"></div>
+        <div style="position: absolute; width: 68px; height: 26px; border-radius: 0 100% 0 100%; background: oklch(0.68 0.12 145); transform-origin: 0% 50%; transform: rotate(24deg);"></div>
+        <div style="position: absolute; left: -4px; top: 2px; width: 11px; height: 11px; border-radius: 999px; background: oklch(0.55 0.06 62);"></div>
+        <div style="position: absolute; left: 5px; top: 10px; width: 10px; height: 10px; border-radius: 999px; background: oklch(0.48 0.055 58);"></div>
+      </div>
+    </div>
+
+    <div style="position: absolute; right: 9%; bottom: 58px; width: 0; height: 0; animation: sway2 8.5s ease-in-out infinite; transform-origin: bottom center;">
+      <div style="position: absolute; bottom: 0; left: -6px; width: 12px; height: clamp(78px, 20vw, 100px); border-radius: 8px; background: linear-gradient(90deg, oklch(0.6 0.06 62) 0%, oklch(0.47 0.055 58) 100%); transform: rotate(7deg); transform-origin: bottom center;"></div>
+      <div style="position: absolute; bottom: clamp(73px, 19vw, 94px); left: 6px; width: 0; height: 0;">
+        <div style="position: absolute; width: 72px; height: 27px; border-radius: 0 100% 0 100%; background: oklch(0.6 0.13 152); transform-origin: 0% 50%; transform: rotate(-162deg);"></div>
+        <div style="position: absolute; width: 66px; height: 26px; border-radius: 0 100% 0 100%; background: oklch(0.52 0.12 158); transform-origin: 0% 50%; transform: rotate(-112deg);"></div>
+        <div style="position: absolute; width: 76px; height: 26px; border-radius: 0 100% 0 100%; background: oklch(0.64 0.13 148); transform-origin: 0% 50%; transform: rotate(-52deg);"></div>
+        <div style="position: absolute; width: 62px; height: 24px; border-radius: 0 100% 0 100%; background: oklch(0.68 0.12 145); transform-origin: 0% 50%; transform: rotate(18deg);"></div>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 3%; bottom: clamp(150px, 31vw, 182px);">
+      <div style="position: absolute; bottom: 0; left: 15px; width: 9px; height: 30px; border-radius: 4px; background: oklch(0.52 0.055 60);"></div>
+      <div style="position: absolute; bottom: 22px; left: 0; width: 40px; height: 40px; border-radius: 999px; background: oklch(0.66 0.12 146);"></div>
+      <div style="position: absolute; bottom: 40px; left: 14px; width: 34px; height: 34px; border-radius: 999px; background: oklch(0.72 0.11 142);"></div>
+      <div style="position: absolute; bottom: 34px; left: -10px; width: 28px; height: 28px; border-radius: 999px; background: oklch(0.6 0.12 150);"></div>
+    </div>
+
+    <div style="position: absolute; right: 3%; bottom: clamp(154px, 32vw, 186px);">
+      <div style="position: absolute; bottom: 0; left: 11px; width: 8px; height: 24px; border-radius: 4px; background: oklch(0.52 0.055 60);"></div>
+      <div style="position: absolute; bottom: 18px; left: 0; width: 30px; height: 30px; border-radius: 999px; background: oklch(0.62 0.12 148);"></div>
+      <div style="position: absolute; bottom: 33px; left: 12px; width: 24px; height: 24px; border-radius: 999px; background: oklch(0.7 0.11 143);"></div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isSealed }}" hint-placeholder-val="{{ true }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 500px; aspect-ratio: 4 / 5; max-height: min(74vh, 560px); border-radius: clamp(20px, 5vw, 28px); overflow: hidden; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; background: oklch(0.99 0.012 120); border: 5px solid oklch(0.99 0.008 120); box-shadow: 0 30px 70px -30px oklch(0.4 0.08 175 / 0.6); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;" onClick="{{ wash }}">
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 14px; padding: 13% 40px 40px; text-align: center; z-index: 2;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: oklch(0.48 0.08 168);">Feliz 28 anos</div>
+        <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(44px, 13vw, 62px); line-height: 1;">Thaly</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 30px; height: 2px; border-radius: 2px; background: oklch(0.7 0.11 150);"></div>
+          <svg viewBox="0 0 24 24" width="20" height="20" style="display: block; flex: none; animation: beat 2.4s ease-in-out infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg>
+          <div style="width: 30px; height: 2px; border-radius: 2px; background: oklch(0.7 0.11 150);"></div>
+        </div>
+      </div>
+      <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 100%; pointer-events: none; z-index: 3;">
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 60%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: roll 15s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,50 C100,50 200,150 300,150 C400,150 500,50 600,50 C700,50 800,150 900,150 C1000,150 1100,50 1200,50 C1300,50 1400,150 1500,150 C1600,150 1700,50 1800,50 C1900,50 2000,150 2100,150 C2200,150 2300,50 2400,50 L2400,400 L0,400 Z" fill="oklch(0.83 0.095 162)"></path></svg>
+          </div>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 48%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: rollBack 10s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,140 C100,140 200,40 300,40 C400,40 500,140 600,140 C700,140 800,40 900,40 C1000,40 1100,140 1200,140 C1300,140 1400,40 1500,40 C1600,40 1700,140 1800,140 C1900,140 2000,40 2100,40 C2200,40 2300,140 2400,140 L2400,400 L0,400 Z" fill="oklch(0.68 0.1 180)"></path><path d="M0,140 C100,140 200,40 300,40 C400,40 500,140 600,140 C700,140 800,40 900,40 C1000,40 1100,140 1200,140 C1300,140 1400,40 1500,40 C1600,40 1700,140 1800,140 C1900,140 2000,40 2100,40 C2200,40 2300,140 2400,140" fill="none" stroke="oklch(0.99 0.015 175)" stroke-width="9" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 30%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: roll 19s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,120 C100,120 200,60 300,60 C400,60 500,120 600,120 C700,120 800,60 900,60 C1000,60 1100,120 1200,120 C1300,120 1400,60 1500,60 C1600,60 1700,120 1800,120 C1900,120 2000,60 2100,60 C2200,60 2300,120 2400,120 L2400,400 L0,400 Z" fill="oklch(0.48 0.09 202)"></path></svg>
+          </div>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 24px; display: flex; justify-content: center;">
+          <div style="font-size: clamp(11px, 3.2vw, 13px); letter-spacing: 0.14em; text-transform: uppercase; text-align: center; color: oklch(0.99 0.01 180); animation: drift 4s ease-in-out infinite;">toque para a maré baixar</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isWashing }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 500px; aspect-ratio: 4 / 5; max-height: min(74vh, 560px); border-radius: clamp(20px, 5vw, 28px); overflow: hidden; background: oklch(0.99 0.012 120); border: 5px solid oklch(0.99 0.008 120); box-shadow: 0 30px 70px -30px oklch(0.4 0.08 175 / 0.6);">
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 14px; padding: 13% 40px 40px; text-align: center; z-index: 2;">
+        <div style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: oklch(0.48 0.08 168);">Feliz 28 anos</div>
+        <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(44px, 13vw, 62px); line-height: 1;">Thaly</div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 30px; height: 2px; border-radius: 2px; background: oklch(0.7 0.11 150);"></div>
+          <svg viewBox="0 0 24 24" width="20" height="20" style="display: block; flex: none; animation: beat 2.4s ease-in-out infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg>
+          <div style="width: 30px; height: 2px; border-radius: 2px; background: oklch(0.7 0.11 150);"></div>
+        </div>
+      </div>
+      <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 100%; pointer-events: none; z-index: 3; animation: washOut 1.15s cubic-bezier(0.5, 0, 0.35, 1) both;">
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 60%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: roll 15s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,50 C100,50 200,150 300,150 C400,150 500,50 600,50 C700,50 800,150 900,150 C1000,150 1100,50 1200,50 C1300,50 1400,150 1500,150 C1600,150 1700,50 1800,50 C1900,50 2000,150 2100,150 C2200,150 2300,50 2400,50 L2400,400 L0,400 Z" fill="oklch(0.83 0.095 162)"></path></svg>
+          </div>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 48%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: rollBack 10s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,140 C100,140 200,40 300,40 C400,40 500,140 600,140 C700,140 800,40 900,40 C1000,40 1100,140 1200,140 C1300,140 1400,40 1500,40 C1600,40 1700,140 1800,140 C1900,140 2000,40 2100,40 C2200,40 2300,140 2400,140 L2400,400 L0,400 Z" fill="oklch(0.68 0.1 180)"></path><path d="M0,140 C100,140 200,40 300,40 C400,40 500,140 600,140 C700,140 800,40 900,40 C1000,40 1100,140 1200,140 C1300,140 1400,40 1500,40 C1600,40 1700,140 1800,140 C1900,140 2000,40 2100,40 C2200,40 2300,140 2400,140" fill="none" stroke="oklch(0.99 0.015 175)" stroke-width="9" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 30%; overflow: hidden;">
+          <div style="position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: roll 19s linear infinite;">
+            <svg viewBox="0 0 2400 400" preserveAspectRatio="none" width="100%" height="100%" style="display: block;"><path d="M0,120 C100,120 200,60 300,60 C400,60 500,120 600,120 C700,120 800,60 900,60 C1000,60 1100,120 1200,120 C1300,120 1400,60 1500,60 C1600,60 1700,120 1800,120 C1900,120 2000,60 2100,60 C2200,60 2300,120 2400,120 L2400,400 L0,400 Z" fill="oklch(0.48 0.09 202)"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <button onClick="{{ toggleSound }}" aria-label="{{ soundLabel }}" title="{{ soundLabel }}" style="position: fixed; right: 14px; top: 14px; z-index: 20; cursor: pointer; width: 44px; height: 44px; border-radius: 999px; border: 1px solid oklch(0.85 0.03 165); background: oklch(0.99 0.012 130); color: oklch(0.42 0.08 170); font-family: 'Nunito', sans-serif; font-size: 17px; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -12px oklch(0.4 0.08 175 / 0.9); touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="background: oklch(0.96 0.03 150);">{{ soundIcon }}</button>
+
+  <sc-if value="{{ showCake }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 4vw, 24px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;">
+      {{ celebration }}
+
+      <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 4vw, 22px); text-align: center; padding: clamp(22px, 6vw, 32px) clamp(18px, 5vw, 30px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.46 0.08 168);">{{ cakeEyebrow }}</div>
+          <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(27px, 7vw, 38px); line-height: 1.1; text-wrap: pretty;">{{ cakeTitle }}</div>
+          <div style="font-size: clamp(14px, 3.8vw, 16px); line-height: 1.6; color: oklch(0.4 0.045 185); text-wrap: pretty;">{{ cakeBlurb }}</div>
+        </div>
+
+        <div style="display: flex; align-items: flex-end; justify-content: center; gap: clamp(8px, 3vw, 18px); width: 100%;">
+      <div style="position: relative; width: clamp(98px, 26vw, 142px); margin-bottom: -1.5%; flex: none; animation: {{ portraitAnim }}; transform-origin: 50% 96%;">
+        <svg viewBox="0 0 130 212" width="100%" style="display: block; overflow: visible;">
+          <defs>
+            <pattern id="shortsPat" width="8" height="8" patternUnits="userSpaceOnUse">
+              <rect width="8" height="8" fill="#BBD0EB"></rect>
+              <circle cx="4" cy="4" r="1.2" fill="#FBFCFE" opacity="0.9"></circle>
+            </pattern>
+          </defs>
+
+          <ellipse cx="65" cy="206" rx="26" ry="4" fill="#2F6F62" opacity="0.13"></ellipse>
+
+          <g style="transform-origin: 40px 30px; animation: {{ hairAnim }};">
+            <path d="M44,22 C34,30 31,58 32,92 C33,116 36,132 39,142 C43,132 45,114 45,92 C45,60 45,36 44,22 Z" fill="#CE9A33"></path>
+          </g>
+          <g style="transform-origin: 90px 30px; animation: {{ hairAnim2 }};">
+            <path d="M86,22 C96,30 99,60 98,96 C97,120 94,136 91,148 C87,136 85,116 85,94 C85,60 85,36 86,22 Z" fill="#CE9A33"></path>
+          </g>
+          <path d="M65,2 C86,2 97,16 97,34 C97,44 94,50 91,52 C92,32 82,20 65,20 C48,20 38,32 39,52 C36,50 33,44 33,34 C33,16 44,2 65,2 Z" fill="#EBC559"></path>
+
+          <rect x="60" y="48" width="10" height="14" rx="4" fill="#E0AE80"></rect>
+
+          <g style="transform-origin: 44px 64px; animation: {{ hairAnim }};">
+            <path d="M46,60 C40,64 38,90 40,116 C41,126 43,132 45,136 C47,128 49,112 49,94 C49,76 49,64 46,60 Z" fill="#A6C1E2"></path>
+          </g>
+          <g style="transform-origin: 86px 64px; animation: {{ hairAnim2 }};">
+            <path d="M84,60 C90,64 92,92 90,118 C89,128 87,134 85,138 C83,130 81,114 81,94 C81,76 81,64 84,60 Z" fill="#8DAACF"></path>
+          </g>
+
+          <rect x="52" y="60" width="26" height="18" rx="6" fill="#FFFFFF" stroke="#8FA8C4" stroke-width="1.4"></rect>
+          <rect x="54" y="76" width="22" height="16" rx="7" fill="#F0C49B"></rect>
+          <ellipse cx="65" cy="86" rx="1.3" ry="1.8" fill="#E0AE80"></ellipse>
+
+          <rect x="52" y="90" width="26" height="22" rx="7" fill="url(#shortsPat)"></rect>
+          <rect x="64.2" y="92" width="1.6" height="18" fill="#9BB6D9" opacity="0.75"></rect>
+
+          <path d="M56,110 L63,110 L62,196 L57,196 Z" fill="#F0C49B"></path>
+          <path d="M67,110 L74,110 L75,196 L70,196 Z" fill="#F0C49B"></path>
+          <rect x="53" y="194" width="15" height="8" rx="3.5" fill="#FFFFFF" stroke="#8FA8C4" stroke-width="1.2"></rect>
+          <rect x="65" y="194" width="15" height="8" rx="3.5" fill="#FFFFFF" stroke="#8FA8C4" stroke-width="1.2"></rect>
+
+          <g style="transform-origin: 52px 62px; animation: {{ armBackAnim }};">
+            <rect x="47" y="60" width="7.5" height="50" rx="3.7" fill="#FAD5B2" stroke="#B87C4B" stroke-width="1.3"></rect>
+          </g>
+          <g style="transform-origin: 78px 62px; animation: {{ armFrontAnim }};">
+            <rect x="75.5" y="60" width="7.5" height="50" rx="3.7" fill="#F3C79C" stroke="#B87C4B" stroke-width="1.3"></rect>
+          </g>
+
+          <g>
+            <ellipse cx="65" cy="30" rx="27" ry="27.5" fill="#EBC559"></ellipse>
+            <ellipse cx="65" cy="33" rx="20.5" ry="21.5" fill="#F6CBA2"></ellipse>
+            <path d="M44.6,27 C47,15 57,10 65,10 C74,10 84,15 85.6,27 C80,20 73,17 65,17 C56,17 49,20 44.6,27 Z" fill="#CE9A33"></path>
+            <path d="M44.6,26 C50,17 58,13 66,13 C75,13 82,17 85.6,26 C78,19 70,16 62,17 C55,18 48,21 44.6,26 Z" fill="#EBC559"></path>
+
+            <g transform="rotate(-6 65 12)">
+              <rect x="46" y="8.6" width="38" height="2.1" rx="1" fill="#3A3A42"></rect>
+              <rect x="46.5" y="7.6" width="16" height="6.4" rx="2.6" fill="#3A3A42"></rect>
+              <rect x="67.5" y="7.6" width="16" height="6.4" rx="2.6" fill="#3A3A42"></rect>
+              <rect x="48.4" y="9" width="5.6" height="1.6" rx="0.8" fill="#8E93A3" opacity="0.7"></rect>
+            </g>
+
+            <path d="M52.5,28.5 q4,-3.2 8,-0.4" stroke="#5B4634" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
+            <path d="M69.5,28.1 q4,-2.8 8,0.4" stroke="#5B4634" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
+
+            <sc-if value="{{ mouthSmile }}" hint-placeholder-val="{{ true }}">
+              <ellipse cx="56.6" cy="35.6" rx="4" ry="4.3" fill="#FFFFFF"></ellipse>
+              <ellipse cx="73.4" cy="35.6" rx="4" ry="4.3" fill="#FFFFFF"></ellipse>
+              <circle cx="57.2" cy="36" r="2.5" fill="#6B4A2E"></circle>
+              <circle cx="74" cy="36" r="2.5" fill="#6B4A2E"></circle>
+              <circle cx="57.2" cy="36" r="1.2" fill="#2A1C12"></circle>
+              <circle cx="74" cy="36" r="1.2" fill="#2A1C12"></circle>
+              <circle cx="58.4" cy="34.6" r="0.8" fill="#FFFFFF"></circle>
+              <circle cx="75.2" cy="34.6" r="0.8" fill="#FFFFFF"></circle>
+              <path d="M52.6,33.4 q4,-2.6 8,0" stroke="#5B4634" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
+              <path d="M69.4,33.4 q4,-2.6 8,0" stroke="#5B4634" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
+            </sc-if>
+            <sc-if value="{{ isBlowing }}" hint-placeholder-val="{{ false }}">
+              <path d="M52.6,35.4 q4,4.6 8,0" stroke="#5B4634" stroke-width="2.1" fill="none" stroke-linecap="round"></path>
+              <path d="M69.4,35.4 q4,4.6 8,0" stroke="#5B4634" stroke-width="2.1" fill="none" stroke-linecap="round"></path>
+            </sc-if>
+
+            <ellipse cx="51.5" cy="41.5" rx="4.2" ry="2.8" fill="#F3A6A0" opacity="0.55"></ellipse>
+            <ellipse cx="78.5" cy="41.5" rx="4.2" ry="2.8" fill="#F3A6A0" opacity="0.55"></ellipse>
+
+            <circle cx="58" cy="40.4" r="0.7" fill="#E3AC7C"></circle>
+            <circle cx="62.4" cy="42" r="0.62" fill="#E3AC7C"></circle>
+            <circle cx="67.8" cy="41.6" r="0.66" fill="#E3AC7C"></circle>
+            <circle cx="72.2" cy="40.2" r="0.6" fill="#E3AC7C"></circle>
+            <circle cx="64.8" cy="39.2" r="0.55" fill="#E3AC7C"></circle>
+
+            <path d="M63.6,38.4 q1.6,1.7 3.2,0" stroke="#5B4634" stroke-width="1.2" fill="none" stroke-linecap="round"></path>
+
+            <sc-if value="{{ isBlowing }}" hint-placeholder-val="{{ false }}">
+              <ellipse cx="69" cy="46.4" rx="3.1" ry="3.6" fill="#8C4A48"></ellipse>
+              <ellipse cx="69" cy="47.6" rx="1.7" ry="1.9" fill="#C9736C"></ellipse>
+            </sc-if>
+            <sc-if value="{{ mouthSmile }}" hint-placeholder-val="{{ true }}">
+              <path d="M58,45 q7,7.4 14,0" stroke="#5B4634" stroke-width="2" fill="none" stroke-linecap="round"></path>
+              <path d="M60.4,46.6 q4.6,3.4 9.2,0 z" fill="#FFFFFF"></path>
+            </sc-if>
+          </g>
+        </svg>
+        <sc-if value="{{ candlesLit }}" hint-placeholder-val="{{ true }}">
+          <div style="position: absolute; left: 58%; top: 21%; pointer-events: none;">
+            <div style="position: absolute; width: 11px; height: 11px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.85); animation: puff 1.7s ease-out infinite;"></div>
+            <div style="position: absolute; top: 12px; width: 8px; height: 8px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.7); animation: puff 1.7s ease-out 0.5s infinite;"></div>
+            <div style="position: absolute; top: -11px; width: 7px; height: 7px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.6); animation: puff 1.7s ease-out 1s infinite;"></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isBlowing }}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; left: 58%; top: 21%; pointer-events: none;">
+            <div style="position: absolute; width: 52px; height: 7px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.9); animation: gust 0.75s cubic-bezier(0.3, 0, 0.4, 1) both;"></div>
+            <div style="position: absolute; top: 12px; width: 38px; height: 6px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.75); animation: gust 0.8s cubic-bezier(0.3, 0, 0.4, 1) 0.1s both;"></div>
+            <div style="position: absolute; top: -12px; width: 32px; height: 5px; border-radius: 999px; background: oklch(0.99 0.008 200 / 0.65); animation: gust 0.85s cubic-bezier(0.3, 0, 0.4, 1) 0.18s both;"></div>
+          </div>
+        </sc-if>
+      </div>
+
+          <div style="position: relative; width: clamp(230px, 66vw, 320px); display: flex; flex-direction: column; align-items: center;">
+            <div style="position: relative; width: 100%; padding-top: clamp(34px, 9vw, 44px);">
+
+              <div style="position: absolute; left: 6%; right: 6%; top: clamp(34px, 9vw, 44px); height: clamp(46px, 12.5vw, 58px); z-index: 3;">
+                <sc-for list="{{ candles }}" as="candle" hint-placeholder-count="28">
+                  <div style="position: absolute; display: flex; flex-direction: column; align-items: center; left: {{ candle.x }}%; top: {{ candle.y }}%; z-index: {{ candle.z }}; transform: translate(-50%, -100%);">
+                    <sc-if value="{{ candle.lit }}" hint-placeholder-val="{{ true }}">
+                      <div style="position: relative; width: 7px; height: 11px; margin-bottom: 1px;">
+                        <div style="position: absolute; inset: -6px; border-radius: 999px; background: oklch(0.9 0.14 88); filter: blur(5px); animation: glowPulse 1.7s ease-in-out infinite;"></div>
+                        <div style="position: absolute; inset: 0; border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%; background: linear-gradient(180deg, oklch(0.97 0.11 98) 0%, oklch(0.8 0.19 52) 100%); animation: flicker 0.9s ease-in-out infinite;"></div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ candle.out }}" hint-placeholder-val="{{ false }}">
+                      <div style="width: 4px; height: 9px; margin-bottom: 2px; border-radius: 999px; background: oklch(0.74 0.008 240); animation: smokeUp 2.6s ease-out infinite;"></div>
+                    </sc-if>
+                    <div style="width: 1.5px; height: 3px; background: oklch(0.38 0.02 60);"></div>
+                    <div style="width: 4.5px; height: clamp(15px, 4vw, 19px); border-radius: 2px; background: repeating-linear-gradient(140deg, {{ candle.color }} 0 3.5px, oklch(0.99 0.008 100) 3.5px 7px); box-shadow: inset -1.2px 0 0 oklch(0.4 0.03 20 / 0.18);"></div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="position: relative; width: 100%; height: clamp(46px, 12.5vw, 58px); border-radius: 50%; background: radial-gradient(ellipse 60% 70% at 42% 34%, oklch(0.99 0.03 168) 0%, oklch(0.95 0.055 168) 52%, oklch(0.87 0.075 170) 100%); box-shadow: inset 0 -3px 8px oklch(0.6 0.07 172 / 0.28); z-index: 2;">
+                <sc-if value="{{ sliceOut }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; right: 14%; top: 34%; bottom: -14%; width: 23%; z-index: 4; clip-path: polygon(16% 0%, 84% 0%, 74% 100%, 26% 100%); background: linear-gradient(180deg, oklch(0.8 0.07 170) 0%, oklch(0.85 0.06 72) 34%, oklch(0.78 0.06 68) 100%); box-shadow: inset 0 4px 7px oklch(0.45 0.06 150 / 0.35);"></div>
+                </sc-if>
+                <div style="position: absolute; inset: 0; border-radius: 50%; overflow: hidden;"><div style="position: absolute; left: 14%; top: 28%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 44.4); transform: rotate(-24deg);"></div><div style="position: absolute; left: 27%; top: 54%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 78.2); transform: rotate(16deg);"></div><div style="position: absolute; left: 41%; top: 34%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 114.60000000000001); transform: rotate(44deg);"></div><div style="position: absolute; left: 56%; top: 60%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 153.6); transform: rotate(-12deg);"></div><div style="position: absolute; left: 70%; top: 30%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 190); transform: rotate(26deg);"></div><div style="position: absolute; left: 83%; top: 56%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 223.8); transform: rotate(58deg);"></div><div style="position: absolute; left: 22%; top: 70%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 65.2); transform: rotate(-40deg);"></div><div style="position: absolute; left: 63%; top: 22%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 171.8); transform: rotate(8deg);"></div><div style="position: absolute; left: 48%; top: 74%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 132.8); transform: rotate(32deg);"></div><div style="position: absolute; left: 78%; top: 72%; width: 8px; height: 3.5px; border-radius: 999px; background: oklch(0.68 0.15 210.8); transform: rotate(-18deg);"></div></div>
+              </div>
+
+              <div style="position: relative; width: 100%; height: clamp(62px, 17vw, 78px); margin-top: clamp(-24px, -6.3vw, -29px); border-radius: 0 0 46% 46% / 0 0 22% 22%; overflow: hidden; background: linear-gradient(180deg, oklch(0.88 0.06 72) 0%, oklch(0.88 0.06 72) 40%, oklch(0.8 0.065 66) 100%); box-shadow: inset -16px 0 26px -16px oklch(0.42 0.06 58 / 0.5), inset 16px 0 22px -16px oklch(1 0 0 / 0.5); z-index: 1;">
+                <div style="position: absolute; left: 0; right: 0; top: 0; height: 52%;"><div style="position: absolute; left: 2%; top: -2px; width: 9%; height: 10px; border-radius: 0 0 27px 27px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 11%; top: -2px; width: 12%; height: 20px; border-radius: 0 0 36px 36px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 20%; top: -2px; width: 15%; height: 30px; border-radius: 0 0 45px 45px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 29%; top: -2px; width: 18%; height: 15px; border-radius: 0 0 54px 54px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 38%; top: -2px; width: 9%; height: 25px; border-radius: 0 0 27px 27px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 47%; top: -2px; width: 12%; height: 10px; border-radius: 0 0 36px 36px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 56%; top: -2px; width: 15%; height: 20px; border-radius: 0 0 45px 45px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 65%; top: -2px; width: 18%; height: 30px; border-radius: 0 0 54px 54px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 74%; top: -2px; width: 9%; height: 15px; border-radius: 0 0 27px 27px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 83%; top: -2px; width: 12%; height: 25px; border-radius: 0 0 36px 36px; background: oklch(0.87 0.075 170);"></div><div style="position: absolute; left: 92%; top: -2px; width: 15%; height: 10px; border-radius: 0 0 45px 45px; background: oklch(0.87 0.075 170);"></div></div>
+                <div style="position: absolute; left: 0; right: 0; top: 62%; height: 13%; background: oklch(0.79 0.1 30);"></div>
+                <div style="position: absolute; left: 0; right: 0; top: 38%; z-index: 4; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                  <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(20px, 5.2vw, 25px); line-height: 1; color: oklch(0.44 0.11 22); text-shadow: 0 1px 0 oklch(1 0 0 / 0.55);">28</div>
+                  <svg viewBox="0 0 24 24" width="15" height="15" style="display: block; flex: none;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.6 0.18 20)"></path></svg>
+                </div>
+                <sc-if value="{{ sliceOut }}" hint-placeholder-val="{{ false }}">
+                  <div style="position: absolute; right: 14%; top: 0; bottom: 0; width: 23%; z-index: 3; clip-path: polygon(10% 0%, 90% 0%, 74% 100%, 26% 100%); overflow: hidden; background: linear-gradient(180deg, oklch(0.83 0.055 70) 0%, oklch(0.76 0.06 66) 100%); box-shadow: inset 0 5px 9px oklch(0.4 0.05 55 / 0.32);">
+                    <div style="position: absolute; left: 0; right: 0; top: 62%; height: 13%; background: oklch(0.75 0.095 30);"></div>
+                  </div>
+                </sc-if>
+              </div>
+
+              <div style="width: 108%; margin-left: -4%; height: clamp(12px, 3.4vw, 16px); margin-top: -6px; border-radius: 0 0 999px 999px / 0 0 100% 100%; background: linear-gradient(180deg, oklch(0.96 0.015 200) 0%, oklch(0.84 0.025 205) 100%); box-shadow: 0 12px 20px -14px oklch(0.4 0.06 205 / 0.85);"></div>
+            </div>
+          </div>
+
+          <sc-if value="{{ sliceOut }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px; animation: pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;">
+              <div style="position: relative; width: clamp(62px, 18vw, 86px); height: clamp(52px, 15vw, 72px);">
+                <div style="position: absolute; inset: 0; clip-path: polygon(0% 100%, 100% 0%, 100% 100%); overflow: hidden; background: linear-gradient(180deg, oklch(0.88 0.06 72) 0%, oklch(0.8 0.065 66) 100%);">
+                  <div style="position: absolute; left: 0; right: 0; top: 46%; height: 13%; background: oklch(0.79 0.1 30);"></div>
+                  <div style="position: absolute; left: 0; right: 0; top: 74%; height: 9%; background: oklch(0.84 0.055 64);"></div>
+                  <div style="position: absolute; left: 46%; top: 58%; width: 6px; height: 3px; border-radius: 999px; background: oklch(0.66 0.14 104); transform: rotate(-18deg);"></div><div style="position: absolute; left: 62%; top: 74%; width: 6px; height: 3px; border-radius: 999px; background: oklch(0.66 0.14 136); transform: rotate(22deg);"></div><div style="position: absolute; left: 78%; top: 46%; width: 6px; height: 3px; border-radius: 999px; background: oklch(0.66 0.14 168); transform: rotate(8deg);"></div><div style="position: absolute; left: 70%; top: 30%; width: 6px; height: 3px; border-radius: 999px; background: oklch(0.66 0.14 152); transform: rotate(-34deg);"></div><div style="position: absolute; left: 88%; top: 66%; width: 6px; height: 3px; border-radius: 999px; background: oklch(0.66 0.14 188); transform: rotate(40deg);"></div>
+                  <div style="position: absolute; inset: 0; background: linear-gradient(105deg, oklch(1 0 0 / 0.3) 0%, transparent 42%);"></div>
+                </div>
+                <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; pointer-events: none;">
+                  <svg viewBox="0 0 100 82" preserveAspectRatio="none" width="100%" height="100%" style="display: block;">
+                    <path d="M0,82 L100,0 L100,11 L9,82 Z" fill="oklch(0.9 0.07 168)"></path>
+                    <path d="M100,0 L100,15 C94,17 90,12 84,15 C78,18 74,13 68,17 L100,0 Z" fill="oklch(0.94 0.055 168)"></path>
+                  </svg>
+                </div>
+              </div>
+              <div style="width: clamp(76px, 22vw, 102px); height: 10px; border-radius: 0 0 999px 999px / 0 0 100% 100%; background: linear-gradient(180deg, oklch(0.96 0.015 200) 0%, oklch(0.84 0.025 205) 100%); box-shadow: 0 8px 14px -10px oklch(0.4 0.06 205 / 0.85);"></div>
+              <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.46 0.06 175);">sua fatia</div>
+            </div>
+          </sc-if>
+        </div>
+
+        <button onClick="{{ cakeAction }}" style="cursor: pointer; border: none; font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 20px); padding: 16px clamp(24px, 7vw, 36px); min-height: 52px; border-radius: 999px; background: oklch(0.55 0.11 168); color: oklch(0.99 0.012 120); box-shadow: 0 12px 26px -12px oklch(0.4 0.09 172 / 0.9); touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; transition: transform 0.18s ease, box-shadow 0.18s ease;" style-hover="transform: translateY(-2px); box-shadow: 0 18px 32px -14px oklch(0.4 0.09 172 / 0.95);">{{ cakeCta }}</button>
+      </div>
+
+      <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 21px); color: oklch(0.42 0.05 180);">— seu Pierre</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSlides }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 4vw, 24px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;">
+      <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: clamp(12px, 3vw, 18px); text-align: center; padding: clamp(16px, 4.5vw, 28px) clamp(16px, 5vw, 30px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.46 0.08 168);">Nós dois</div>
+          <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(24px, 6.2vw, 34px); line-height: 1.1; text-wrap: pretty;">O ano que a gente viveu.</div>
+        </div>
+
+        <div style="position: relative; width: 100%; aspect-ratio: 4 / 5; max-height: min(42vh, 420px); border-radius: 20px; overflow: hidden; background: oklch(0.93 0.035 165); box-shadow: inset 0 0 0 5px oklch(0.99 0.012 120);">
+          <sc-for list="{{ photos }}" as="photo" hint-placeholder-count="6">
+            <div style="position: absolute; inset: 0; transition: opacity 1s ease, transform 1s ease; opacity: {{ photo.opacity }}; transform: {{ photo.enter }}; z-index: {{ photo.z }};">
+              <img src="{{ photo.src }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(22px) saturate(1.15) brightness(0.92); transform: scale(1.18);" />
+              <img src="{{ photo.src }}" alt="nós dois" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; animation: {{ photo.anim }};" />
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <button onClick="{{ prevPhoto }}" aria-label="foto anterior" style="cursor: pointer; border: 1px solid oklch(0.88 0.03 165); background: oklch(0.99 0.012 120); color: oklch(0.45 0.08 170); width: 44px; height: 44px; border-radius: 999px; font-size: 18px; line-height: 1; touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="background: oklch(0.96 0.03 150);">‹</button>
+          <div style="min-width: 72px; font-size: 13px; letter-spacing: 0.1em; color: oklch(0.46 0.06 170);">{{ photoCounter }}</div>
+          <button onClick="{{ nextPhoto }}" aria-label="próxima foto" style="cursor: pointer; border: 1px solid oklch(0.88 0.03 165); background: oklch(0.99 0.012 120); color: oklch(0.45 0.08 170); width: 44px; height: 44px; border-radius: 999px; font-size: 18px; line-height: 1; touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="background: oklch(0.96 0.03 150);">›</button>
+        </div>
+
+        <button onClick="{{ toGifts }}" style="cursor: pointer; border: none; font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 20px); padding: 14px clamp(24px, 7vw, 36px); min-height: 50px; border-radius: 999px; background: oklch(0.55 0.11 168); color: oklch(0.99 0.012 120); box-shadow: 0 12px 26px -12px oklch(0.4 0.09 172 / 0.9); touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; transition: transform 0.18s ease, box-shadow 0.18s ease;" style-hover="transform: translateY(-2px); box-shadow: 0 18px 32px -14px oklch(0.4 0.09 172 / 0.95);">Ver seu presente</button>
+      </div>
+
+      <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(17px, 4.6vw, 21px); color: oklch(0.42 0.05 180);">— seu Pierre</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isChoosing }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 880px; display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 5vw, 36px); animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;">
+      <div style="text-align: center; display: flex; flex-direction: column; gap: 16px; max-width: 620px; padding: clamp(22px, 6vw, 32px) clamp(18px, 5.5vw, 34px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <svg viewBox="0 0 24 24" width="17" height="17" style="display: block; flex: none; animation: beat 2.6s ease-in-out infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg>
+          <div style="width: 34px; height: 2px; border-radius: 2px; background: oklch(0.65 0.12 150);"></div>
+          <div style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: oklch(0.44 0.08 168);">Feliz 28 anos</div>
+          <div style="width: 34px; height: 2px; border-radius: 2px; background: oklch(0.65 0.12 150);"></div>
+          <svg viewBox="0 0 24 24" width="17" height="17" style="display: block; flex: none; animation: beat 2.6s ease-in-out 0.4s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg>
+        </div>
+        <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(30px, 8vw, 48px); line-height: 1.08; text-wrap: pretty;">Thaly, eu não consegui escolher por você.</div>
+        <div style="font-size: clamp(15px, 4vw, 17px); line-height: 1.6; color: oklch(0.4 0.045 185); text-wrap: pretty;">Tudo de bom deste ano teve você em algum lugar. Então essa escolha é sua: fique com o que você realmente quiser, e é seu.</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: clamp(14px, 4vw, 20px); width: 100%;">
+        <button onClick="{{ pickLaptop }}" style="cursor: pointer; text-align: left; font-family: 'Nunito', sans-serif; color: inherit; border: 1px solid oklch(0.87 0.03 155); background: oklch(0.99 0.008 130); border-radius: clamp(20px, 5vw, 24px); padding: clamp(20px, 5.5vw, 30px) clamp(18px, 5vw, 28px) clamp(20px, 5vw, 26px); display: flex; flex-direction: column; gap: clamp(16px, 4.5vw, 22px); min-height: 64px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; box-shadow: 0 16px 38px -24px oklch(0.4 0.08 175 / 0.7); transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 30px 56px -26px oklch(0.4 0.09 172 / 0.8); border-color: oklch(0.68 0.11 152);">
+          <div style="height: clamp(108px, 28vw, 132px); border-radius: 16px; background: linear-gradient(180deg, oklch(0.94 0.045 150) 0%, oklch(0.88 0.07 162) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
+            <div style="width: min(168px, 46vw); height: clamp(82px, 22vw, 100px); border-radius: 10px 10px 3px 3px; background: oklch(0.33 0.03 200); border: 4px solid oklch(0.86 0.01 160); box-sizing: border-box;"></div>
+            <div style="width: min(202px, 55vw); height: 9px; border-radius: 0 0 8px 8px; background: oklch(0.88 0.008 160);"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(26px, 7vw, 32px); line-height: 1;">MacBook Neo</div>
+            <div style="font-size: 15px; line-height: 1.55; color: oklch(0.44 0.04 185);">Para os planos, as madrugadas e tudo o que você ainda vai construir.</div>
+          </div>
+          <div style="font-size: 14px; font-weight: 500; color: oklch(0.45 0.1 158); display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" width="13" height="13" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg><span>Quero esse →</span></div>
+        </button>
+
+        <button onClick="{{ pickPhone }}" style="cursor: pointer; text-align: left; font-family: 'Nunito', sans-serif; color: inherit; border: 1px solid oklch(0.87 0.03 155); background: oklch(0.99 0.008 130); border-radius: clamp(20px, 5vw, 24px); padding: clamp(20px, 5.5vw, 30px) clamp(18px, 5vw, 28px) clamp(20px, 5vw, 26px); display: flex; flex-direction: column; gap: clamp(16px, 4.5vw, 22px); min-height: 64px; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-appearance: none; box-shadow: 0 16px 38px -24px oklch(0.4 0.08 175 / 0.7); transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease, border-color 0.22s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 30px 56px -26px oklch(0.4 0.09 172 / 0.8); border-color: oklch(0.62 0.1 190);">
+          <div style="height: clamp(108px, 28vw, 132px); border-radius: 16px; background: linear-gradient(180deg, oklch(0.93 0.05 175) 0%, oklch(0.86 0.075 195) 100%); display: flex; align-items: center; justify-content: center;">
+            <div style="position: relative; width: 72px; height: 124px; border-radius: 15px; background: oklch(0.34 0.03 210); border: 3px solid oklch(0.88 0.01 170); box-sizing: border-box; display: flex; justify-content: center; padding-top: 7px;">
+              <div style="width: 26px; height: 6px; border-radius: 999px; background: oklch(0.88 0.01 170);"></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(26px, 7vw, 32px); line-height: 1;">iPhone</div>
+            <div style="font-size: 15px; line-height: 1.55; color: oklch(0.44 0.04 185);">Para cada onda, cada pôr do sol e cada dia comum que vale guardar.</div>
+          </div>
+          <div style="font-size: 14px; font-weight: 500; color: oklch(0.44 0.09 195); display: flex; align-items: center; gap: 8px;"><svg viewBox="0 0 24 24" width="13" height="13" style="display: block; flex: none; "><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7 0.14 18)"></path></svg><span>Quero esse →</span></div>
+        </button>
+      </div>
+
+      <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: 21px; color: oklch(0.42 0.05 180);">— seu Pierre</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; z-index: 1; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; animation: pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;">
+      {{ celebration }}
+      <div style="position: relative; width: 104px; height: 104px; border-radius: 999px; overflow: hidden; background: oklch(0.88 0.06 160); box-shadow: 0 18px 40px -16px oklch(0.45 0.09 175 / 0.75);">
+        <div style="position: absolute; left: -25%; bottom: -30%; width: 160%; height: 70%; border-radius: 46% 54% 0 0 / 40% 36% 0 0; background: oklch(0.74 0.1 162); animation: swell 6s ease-in-out infinite;"></div>
+        <div style="position: absolute; left: -15%; bottom: -34%; width: 150%; height: 58%; border-radius: 52% 48% 0 0 / 36% 40% 0 0; background: oklch(0.47 0.09 200); animation: swell2 8s ease-in-out infinite;"></div>
+        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="37" height="37" style="display: block; flex: none; animation: beat 1.9s ease-in-out infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.72 0.15 18)"></path></svg></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; padding: clamp(22px, 6vw, 32px) clamp(18px, 5vw, 30px); border-radius: clamp(20px, 5vw, 28px); background: oklch(0.99 0.012 120); box-shadow: 0 18px 44px -30px oklch(0.4 0.08 175 / 0.8);">
+        <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(30px, 8vw, 46px); line-height: 1.08;">{{ chosenTitle }}</div>
+        <div style="font-size: clamp(15px, 4vw, 17px); line-height: 1.6; color: oklch(0.4 0.045 185); text-wrap: pretty;">{{ chosenBlurb }}</div>
+
+        <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 7px; align-items: center; padding: clamp(16px, 4.5vw, 20px) clamp(16px, 4.5vw, 24px); border-radius: 20px; background: oklch(0.99 0.012 130); border: 2px dashed oklch(0.72 0.1 155); box-shadow: 0 14px 34px -26px oklch(0.4 0.08 175 / 0.8);">
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.46 0.08 168);">Letrinha miúda</div>
+          <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: clamp(21px, 5.6vw, 26px); line-height: 1.15; text-wrap: pretty;">Só que não é de graça: vai te custar 28 beijos.</div>
+          <div style="margin-top: 8px; display: grid; grid-template-columns: repeat(7, 1fr); gap: clamp(5px, 1.6vw, 8px); justify-items: center; align-items: center; width: 100%; max-width: 300px;"><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2s ease-in-out 0s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.25s ease-in-out 0.14s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.5s ease-in-out 0.28s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 18)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.75s ease-in-out 0.42000000000000004s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 21)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3s ease-in-out 0.56s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 24)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3.25s ease-in-out 0.7000000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2s ease-in-out 0.8400000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.25s ease-in-out 0.9800000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 18)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.5s ease-in-out 1.12s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 21)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.75s ease-in-out 0s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 24)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3s ease-in-out 0.14s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3.25s ease-in-out 0.28s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2s ease-in-out 0.42000000000000004s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 18)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.25s ease-in-out 0.56s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 21)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.5s ease-in-out 0.7000000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 24)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.75s ease-in-out 0.8400000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3s ease-in-out 0.9800000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3.25s ease-in-out 1.12s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 18)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2s ease-in-out 0s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 21)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.25s ease-in-out 0.14s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 24)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.5s ease-in-out 0.28s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.75s ease-in-out 0.42000000000000004s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3s ease-in-out 0.56s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 18)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 3.25s ease-in-out 0.7000000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 21)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2s ease-in-out 0.8400000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.68 0.14 24)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.25s ease-in-out 0.9800000000000001s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.7150000000000001 0.14 12)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.5s ease-in-out 1.12s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.75 0.14 15)"></path></svg><svg viewBox="0 0 24 24" width="11" height="11" style="display: block; flex: none; animation: beat 2.75s ease-in-out 0s infinite;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="oklch(0.785 0.14 18)"></path></svg></div>
+        </div>
+        <div style="font-family: 'Baloo 2', system-ui, cursive; font-size: 21px; color: oklch(0.42 0.05 180); margin-top: 6px;">Feliz aniversário, momorango. — seu Pierre</div>
+      </div>
+      <sc-if value="{{ canUndo }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ reset }}" style="cursor: pointer; border: none; background: none; font-family: 'Nunito', sans-serif; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; color: oklch(0.46 0.05 185); padding: 12px 16px; min-height: 44px; touch-action: manipulation; -webkit-tap-highlight-color: transparent;" style-hover="color: oklch(0.32 0.05 185);">espera, deixa eu ver de novo</button>
+      </sc-if>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startOpened&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;allowUndo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;slideSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4.2,&quot;min&quot;:2,&quot;max&quot;:8,&quot;step&quot;:0.2,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;celebration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Confetti&quot;,&quot;Sea sparkle&quot;,&quot;None&quot;],&quot;default&quot;:&quot;Confetti&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: props.startOpened ? "choose" : "sealed", pick: null, slide: 0, muted: false };
+  }
+
+  componentWillUnmount() { clearTimeout(this._t); clearInterval(this._slideTimer); this.stopLoveTheme(); }
+
+  playSong() {
+    if (this._played || this.state.muted) return;
+    this._played = true;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    const ctx = this._ctx || (this._ctx = new AC());
+    if (ctx.state === "suspended") ctx.resume();
+    const N = { G3: 196, A3: 220, Bb3: 233.08, C4: 261.63, D4: 293.66, Eb4: 311.13, F4: 349.23, G4: 392, A4: 440, Bb4: 466.16, C5: 523.25, D5: 587.33 };
+    const song = [
+      [N.C4, 0.5], [N.C4, 0.25], [N.D4, 0.75], [N.C4, 0.75], [N.F4, 0.75], [N.Eb4, 1.4],
+      [N.C4, 0.5], [N.C4, 0.25], [N.D4, 0.75], [N.C4, 0.75], [N.G4, 0.75], [N.F4, 1.4],
+      [N.C4, 0.5], [N.C4, 0.25], [N.C5, 0.75], [N.A4, 0.75], [N.F4, 0.75], [N.Eb4, 0.75], [N.D4, 1.4],
+      [N.Bb4, 0.5], [N.Bb4, 0.25], [N.A4, 0.75], [N.F4, 0.75], [N.G4, 0.75], [N.F4, 1.6],
+      [N.C4, 0.34], [N.F4, 0.34], [N.F4, 0.34], [N.C4, 0.34], [N.F4, 0.34], [N.F4, 0.34],
+      [N.C4, 0.34], [N.F4, 0.34], [N.F4, 0.68],
+      [N.C4, 0.34], [N.G4, 0.34], [N.G4, 0.34], [N.C4, 0.34], [N.G4, 0.34], [N.G4, 0.34],
+      [N.C4, 0.34], [N.G4, 0.34], [N.G4, 0.68],
+      [N.A4, 0.4], [N.A4, 0.4], [N.G4, 0.4], [N.F4, 0.4], [N.F4, 1.4]
+    ];
+
+    const master = ctx.createGain();
+    master.gain.value = 0.16;
+    master.connect(ctx.destination);
+    this._master = master;
+    let t = ctx.currentTime + 0.25;
+    song.forEach(([f, d]) => {
+      const dur = d * 0.46;
+      [1, 2].forEach((mult, i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = i ? "sine" : "triangle";
+        o.frequency.value = f * mult;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(i ? 0.18 : 0.5, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur * 1.5);
+        o.connect(g); g.connect(master);
+        o.start(t); o.stop(t + dur * 1.6);
+      });
+      t += dur;
+    });
+  }
+
+  startLoveTheme() {
+    if (this._love) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    const ctx = this._ctx || (this._ctx = new AC());
+    if (ctx.state === "suspended") ctx.resume();
+
+    const bus = ctx.createGain();
+    bus.gain.value = 0;
+    const warm = ctx.createBiquadFilter();
+    warm.type = "lowpass";
+    warm.frequency.value = 2400;
+    bus.connect(warm); warm.connect(ctx.destination);
+    bus.gain.linearRampToValueAtTime(this.state.muted ? 0 : 0.11, ctx.currentTime + 2.5);
+    this._love = { bus, stop: false };
+
+    const P = 1.05946309;
+    const hz = (semi) => 261.63 * Math.pow(P, semi);
+    const chords = [[-4, 0, 3, 7], [-7, -2, 2, 5], [-9, -1, 2, 7], [-5, 0, 4, 7]];
+    const melody = [[12, 0, 1.2], [14, 1.4, 1], [16, 2.6, 1.4], [14, 4.4, 0.9], [12, 5.6, 1.6],
+                    [11, 7.6, 1.1], [9, 9, 1.4], [11, 10.6, 1], [12, 12, 2],
+                    [16, 14.4, 1.2], [14, 15.8, 1], [12, 17, 1.4], [9, 18.6, 1.2], [7, 20, 2.4]];
+    const BAR = 5.8, LOOP = BAR * 4;
+
+    const voice = (f, at, dur, peak, type) => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(peak, at + 0.35);
+      g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+      o.connect(g); g.connect(bus);
+      o.start(at); o.stop(at + dur + 0.1);
+    };
+
+    const schedule = (base) => {
+      chords.forEach((ch, bar) => {
+        const at = base + bar * BAR;
+        ch.forEach((semi, vi) => voice(hz(semi - 12), at + vi * 0.14, BAR * 1.25, vi ? 0.1 : 0.14, "sine"));
+      });
+      melody.forEach(([semi, off, dur]) => {
+        voice(hz(semi), base + off, dur + 1.1, 0.13, "triangle");
+        voice(hz(semi + 12), base + off, dur * 0.7, 0.03, "sine");
+      });
+    };
+
+    let next = ctx.currentTime + 0.4;
+    const pump = () => {
+      if (!this._love || this._love.stop) return;
+      while (next < ctx.currentTime + LOOP) { schedule(next); next += LOOP; }
+      this._loveTimer = setTimeout(pump, 4000);
+    };
+    pump();
+  }
+
+  stopLoveTheme() {
+    if (!this._love) return;
+    const { bus } = this._love;
+    const ctx = this._ctx;
+    this._love.stop = true;
+    clearTimeout(this._loveTimer);
+    try {
+      bus.gain.cancelScheduledValues(ctx.currentTime);
+      bus.gain.setValueAtTime(bus.gain.value, ctx.currentTime);
+      bus.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.4);
+      setTimeout(() => bus.disconnect(), 1800);
+    } catch (e) {}
+    this._love = null;
+  }
+
+  toggleMute() {
+    const muted = !this.state.muted;
+    this.setState({ muted });
+    if (this._master) this._master.gain.value = muted ? 0 : 0.16;
+    if (this._love) this._love.bus.gain.value = muted ? 0 : 0.11;
+    if (!muted && !this._played) this.playSong();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.step !== this.state.step) {
+      if (this.state.step === "slides") this.startLoveTheme();
+      else this.stopLoveTheme();
+    }
+  }
+
+  startSlides() {
+    clearInterval(this._slideTimer);
+    this._slideTimer = setInterval(() => {
+      this.setState(st => ({ slide: (st.slide + 1) % 19 }));
+    }, (this.props.slideSeconds ?? 4.2) * 1000);
+  }
+
+  celebrationEl() {
+    const style = this.props.celebration ?? "Confetti";
+    if (style === "None" || !["blown", "cut", "done"].includes(this.state.step)) return null;
+    const cols = ["oklch(0.7 0.13 150)", "oklch(0.62 0.1 195)", "oklch(0.86 0.09 100)", "oklch(0.5 0.1 165)"];
+    if (style === "Sea sparkle") {
+      return React.createElement("div", { style: { position: "absolute", inset: "-70px", pointerEvents: "none" } },
+        Array.from({ length: 16 }, (_, i) =>
+          React.createElement("div", { key: i, style: {
+            position: "absolute", width: 7, height: 7, borderRadius: 999,
+            background: cols[i % cols.length],
+            left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%`,
+            animation: `twinkle ${2.2 + (i % 5) * 0.4}s ease-in-out ${(i % 7) * 0.26}s infinite`
+          } })
+        )
+      );
+    }
+    return React.createElement("div", { style: { position: "absolute", inset: 0, pointerEvents: "none" } },
+      Array.from({ length: 28 }, (_, i) =>
+        React.createElement("div", { key: i, style: {
+          position: "absolute", top: -30, left: `${(i * 3.6) % 100}%`,
+          width: i % 3 === 0 ? 7 : 9, height: i % 3 === 0 ? 7 : 4,
+          borderRadius: i % 3 === 0 ? 999 : 2,
+          background: cols[i % cols.length],
+          animation: `fall ${2 + (i % 6) * 0.35}s cubic-bezier(0.3,0.6,0.5,1) ${(i % 9) * 0.12}s both`
+        } })
+      )
+    );
+  }
+
+  renderVals() {
+    const { step, pick, slide } = this.state;
+    const laptop = pick === "laptop";
+    const FOTOS = ["./fotos/IMG_20260903_133148.jpg","./fotos/IMG_20260904_195413.jpg","./fotos/IMG_20260905_115305.jpg","./fotos/IMG_20260906_134925.jpg","./fotos/IMG_20260906_183459.jpg","./fotos/IMG_20260910_143536.jpg","./fotos/IMG_20260911_135342.jpg","./fotos/IMG_20260912_205137.jpg","./fotos/IMG_20260913_090125.jpg","./fotos/IMG_20260914_124815.jpg","./fotos/IMG_20260914_145133.jpg","./fotos/IMG_20260915_110802.jpg","./fotos/IMG_20260915_132613.jpg","./fotos/IMG_20260915_135556-f529d56f.jpg","./fotos/IMG_20260915_151046.jpg","./fotos/IMG_20260916_220107.jpg","./fotos/IMG_20260917_195744.jpg","./fotos/IMG_20260918_172050-a896d75f.jpg","./fotos/IMG_20260918_203913.jpg"];
+    const n = FOTOS.length;
+    const copy = {
+      cake: ["28 velinhas", "Antes dos presentes, o bolo.", "Uma velinha pra cada ano seu. Faz o pedido e assopra com vontade.", "Assopre minhas velinhas"],
+      blowing: ["28 velinhas", "Fuuuuuu...", "Assopra, assopra, assopra!", "Assoprando..."],
+      blown: ["Apagou todas", "Você conseguiu!", "Fez o pedido? Então já está valendo. Agora vem a melhor parte do bolo.", "Cortar o bolo"],
+      cut: ["A primeira fatia", "Uma fatia pra você.", "A maior, com mais cobertura, como você merece.", "Ver nossas fotos"]
+    }[step] || ["", "", "", ""];
+    return {
+      isSealed: step === "sealed",
+      isWashing: step === "washing",
+      isChoosing: step === "choose",
+      isDone: step === "done",
+      showCake: ["cake", "blowing", "blown", "cut"].includes(step),
+      isSlides: step === "slides",
+      sliceOut: step === "cut",
+      candlesLit: step === "cake" || step === "blowing",
+      isBlowing: step === "blowing",
+      mouthSmile: step !== "blowing",
+      soundLabel: this.state.muted ? "som desligado" : "som ligado",
+      soundIcon: this.state.muted ? "♪̸" : "♪",
+      toggleSound: () => this.toggleMute(),
+      portraitAnim: step === "blowing" ? "leanIn 1.1s cubic-bezier(0.3, 0, 0.35, 1) both" : "lean 3.4s ease-in-out infinite",
+      armBackAnim: step === "blowing" ? "armBack 1.1s cubic-bezier(0.3, 0, 0.35, 1) both" : "armIdle 3.4s ease-in-out infinite",
+      armFrontAnim: step === "blowing" ? "armBack2 1.1s cubic-bezier(0.3, 0, 0.35, 1) both" : "armIdle2 3.8s ease-in-out infinite",
+      hairAnim: step === "blowing" ? "hairBlow 1.1s ease-out both" : "hairIdle 4.2s ease-in-out infinite",
+      hairAnim2: step === "blowing" ? "hairBlow2 1.1s ease-out both" : "hairIdle2 4.6s ease-in-out infinite",
+      cakeEyebrow: copy[0],
+      cakeTitle: copy[1],
+      cakeBlurb: copy[2],
+      cakeCta: copy[3],
+      candles: (() => {
+        const litNow = step === "cake" || step === "blowing";
+        const rows = [[9, 0.3, 5, 32], [10, 0.54, 6, 30], [9, 0.76, 7, 22]];
+        const hues = [18, 36, 168, 200, 300];
+        const out = [];
+        let k = 0;
+        rows.forEach(([count, rowY, arc, half], r) => {
+          for (let j = 0; j < count; j++) {
+            const t = count === 1 ? 0 : (j / (count - 1)) * 2 - 1;
+            out.push({
+              lit: litNow,
+              out: !litNow,
+              x: 50 + half * t,
+              y: (rowY * 100) + arc * t * t,
+              z: 10 + r,
+              color: `oklch(0.7 0.15 ${hues[k % hues.length]})`
+            });
+            k++;
+          }
+        });
+        return out;
+      })(),
+      photos: FOTOS.map((src, i) => ({
+        n: i + 1,
+        src,
+        opacity: i === slide ? 1 : 0,
+        enter: i === slide ? "translateX(0)" : "translateX(3%)",
+        anim: i === slide ? "photoIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) both" : "none",
+        z: i === slide ? 2 : 1
+      })),
+      photoCounter: (slide + 1) + " / " + n,
+      prevPhoto: () => { this.startSlides(); this.setState(st => ({ slide: (st.slide - 1 + n) % n })); },
+      nextPhoto: () => { this.startSlides(); this.setState(st => ({ slide: (st.slide + 1) % n })); },
+      cakeAction: () => {
+        if (step === "blowing") return;
+        if (step === "cake") {
+          this.playSong();
+          this.setState({ step: "blowing" });
+          this._t = setTimeout(() => this.setState({ step: "blown" }), 1100);
+          return;
+        }
+        if (step === "blown") return this.setState({ step: "cut" });
+        this.setState({ step: "slides", slide: 0 }, () => this.startSlides());
+      },
+      toGifts: () => { clearInterval(this._slideTimer); this.setState({ step: "choose" }); },
+      canUndo: this.props.allowUndo ?? true,
+      chosenTitle: laptop ? "Então é o MacBook Neo." : "Então é o iPhone.",
+      chosenBlurb: laptop
+        ? "Escolha perfeita. É seu — e eu deixo tudo configuradinho esperando por você."
+        : "Escolha perfeita. É seu — e eu pretendo muito ser a sua tela de bloqueio.",
+      celebration: this.celebrationEl(),
+      wash: () => {
+        this.setState({ step: "washing" });
+        this._t = setTimeout(() => this.setState({ step: "cake" }), 1000);
+      },
+      pickLaptop: () => this.setState({ step: "done", pick: "laptop" }),
+      pickPhone: () => this.setState({ step: "done", pick: "phone" }),
+      reset: () => this.setState({ step: "choose", pick: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
